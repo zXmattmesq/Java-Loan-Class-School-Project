@@ -1,1 +1,22 @@
+Project Name: Loan Account Calculator
 
+Description: Developed a Java application to calculate monthly loan payments for different types of loans, including car loans, primary mortgages, and unsecured loans. The application takes into account the loan principal, annual interest rate, and term of loan to calculate the monthly payment.
+
+Tools and Technologies: Java, Object-Oriented Programming, Unit Testing
+
+Role and Accomplishments:
+
+Designed and implemented the LoanAccount class, which represents a generic loan account.
+Created three subclasses of LoanAccount: CarLoan, PrimaryMortgage, and UnsecuredLoan. Each subclass implements additional features specific to the type of loan.
+Implemented the calculateMonthlyPayment() method in all subclasses to calculate the monthly loan payment.
+Wrote unit tests to verify the functionality of the LoanAccount class and its subclasses.
+Awards and Recognition:
+
+Received a grade of A+ on the course project assignment.
+
+Skills Demonstrated:
+
+Java programming language
+Object-oriented programming principles
+Unit testing
+Software design and implementation
