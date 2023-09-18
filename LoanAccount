@@ -1,0 +1,187 @@
+public class LoanAccount {
+
+    public double annualInterestRate;
+    
+    public double principal;
+
+    public int months;
+
+    public LoanAccount(double principal, double annualInterestRate, int months) {
+        this.principal = principal;
+        this.months = months;
+        this.annualInterestRate = annualInterestRate;
+    }
+
+    
+    
+    public double calculateMonthlyPayment( ){
+        annualInterestRate /= 100;
+        double monthlyInterest = annualInterestRate/12;
+        double monthlyPayment = principal * ( monthlyInterest / (1 - Math.pow(1 + monthlyInterest, -months)));
+        return monthlyPayment;
+    }  
+
+    public double getAnnualInterestRate() {
+        return annualInterestRate;
+
+    }
+
+    public double getprincipal() {
+        return principal;
+
+    }
+
+    public double getMonths() {
+        return months;
+
+    }
+
+    public String toString() {
+    return String.format(
+        "\nLoanAccount with:"
+        + "\nPrincipal: $%.2f"
+        + "\nAnnual Interest Rate: %.2f%%"
+        + "\nTerm of Loan in Months: " + months
+        + "\nMonthly Payment: $%.2f"
+        + "\n",
+        principal, annualInterestRate, calculateMonthlyPayment());
+
+    }
+      
+
+}
+class CarLoan extends LoanAccount {
+
+    String vehicleVIN;
+
+    public CarLoan(double principal, double annualInterestRate, int months, String vehicleVIN) {
+        super(principal, annualInterestRate, months);
+        this.vehicleVIN = vehicleVIN;
+
+    }
+
+    @Override
+    public String toString() {
+    return String.format(
+        "\nCar Loan with:"
+        + "\nPrincipal: $%.2f"
+        + "\nAnnual Interest Rate: %.2f%%"
+        + "\nTerm of Loan in Months: " + months
+        + "\nMonthly Payment: $%.2f"
+        + "\nVehicle VIN: %s"
+        + "\n",
+        principal, annualInterestRate, calculateMonthlyPayment(), vehicleVIN);
+
+    }
+  
+}
+
+class PrimaryMortgage extends LoanAccount {
+
+    private double PMIMonthlyAmount;
+
+    private Address Address;
+
+    public PrimaryMortgage(double principal, double annualInterestRate, int months, double PMIMonthlyAmount, Address propertyAddress) {
+        super(principal, annualInterestRate, months);
+        this.PMIMonthlyAmount = PMIMonthlyAmount;
+        this.Address = propertyAddress;
+        
+    }
+
+    @Override
+    public String toString() {
+    return String.format(
+        "\nPrimary Mortgage Loan with:"
+        + "\nPrincipal: $%.2f"
+        + "\nAnnual Interest Rate: %.2f%%"
+        + "\nTerm of Loan in Months: " + months
+        + "\nMonthly Payment: $%.2f"
+        + "\nPMI Monthly Amount: $%.2f"
+        + "\nProperty Address: %s"
+        + "\n",
+        principal, annualInterestRate, calculateMonthlyPayment(), PMIMonthlyAmount, Address);
+
+    }
+
+}
+
+class UnsecuredLoan extends LoanAccount {
+
+    public UnsecuredLoan(double principal, double annualInterestRate, int months) {
+        super(principal, annualInterestRate, months);
+        
+    }
+    @Override
+    public String toString(){
+    return String.format(
+        "\nUnsecured Loan with:"
+        + "\nPrincipal: $%.2f"
+        + "\nAnnual Interest Rate: %.2f%%"
+        + "\nTerm of Loan in Months: " + months
+        + "\nMonthly Payment: $%.2f"
+        + "\n",
+        principal, annualInterestRate, calculateMonthlyPayment());
+      
+    }
+}
+
+class Address {
+
+    String street;
+    String city;
+    String state;
+    String zipcode;
+
+    public Address(String street, String city, String state, String zipcode) {
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+
+    }
+
+    public String getStreet() {
+        return (street);
+    
+    }
+    
+    public String getCity() {
+        return (city);
+    
+    }
+
+    public String getState() {
+        return (state);
+    
+    }
+
+    public String getZipcode() {
+        return (zipcode);
+    
+    }
+    
+    public String toString() {
+        return
+             "\n" + "  " + street + "\n" + "  " + city + "," + " " + state + " " + zipcode + "\n";
+        
+    }
+    
+
+
+
+public static void main(String[] args) {
+
+     // Create three different loan objects, one of each type.
+        CarLoan carLoan = new CarLoan(25000.00, 4.25, 72, "IRQ3458977");
+        
+        Address propertyAddress = new Address("321 Main Street", "State College", "PA", "16801");
+        PrimaryMortgage propertyLoan = new PrimaryMortgage(250000.00, 3.1, 360, 35.12, propertyAddress);
+        
+        UnsecuredLoan unsecuredLoan = new UnsecuredLoan(5000.00, 10.75, 48);
+        
+        //Print out the load information for each loan using the toString() method.
+        System.out.format("%n%s%s%s%n", carLoan, propertyLoan, unsecuredLoan);
+
+}
+}
